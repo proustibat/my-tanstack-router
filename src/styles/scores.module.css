@@ -1,0 +1,11 @@
+.container {
+    text-align: center;
+}
+
+.currentScores {
+    font-size: 1.5rem;
+    p {
+        margin: 0;
+        padding: 0;
+    }
+}

@@ -1,0 +1,29 @@
+.systemUi {
+    font-family: Avenir, Montserrat, Corbel, 'URW Gothic', source-sans-pro, sans-serif;
+    font-weight: normal;
+}
+
+@media only screen and (orientation: landscape) {
+    html {
+        background: black;
+    }
+    body {
+        display: none;
+    }
+}
+
+@media (hover: hover) and (pointer: fine) {
+    html {
+        background: none;
+    }
+    body {
+        display: block;
+    }
+}
+
+.main {
+    --max-width-content: 900px;
+    width: 100%;
+    max-width: var(--max-width-content);
+    margin: auto;
+}
