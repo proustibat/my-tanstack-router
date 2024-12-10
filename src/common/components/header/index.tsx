@@ -6,6 +6,7 @@ import {StyledNav} from "./header.style.tsx";
 
 const links: LinkProps[] = [
     {to: "/", children: "Home" },
+    {to: "/todo", children: "Todo" },
     {to: "/rps", children: "Rock Paper Scissors" },
     {to: "/about", children: "About" },
 ];
@@ -15,7 +16,7 @@ const Header = (): ReactElement => {
         <StyledNav>
             {
                 links.map(linkOptionsProps => {
-                    return <Link activeProps={{ className: "active"}} {...linkOptionsProps} />
+                    return <Link key={linkOptionsProps.to} activeProps={{ className: "active"}} {...linkOptionsProps} />
                 })
             }
         </StyledNav>

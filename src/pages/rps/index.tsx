@@ -14,7 +14,7 @@ const bestScoreKey = "best-score";
 const getComputerChoice = (): CHOICES => Object.values( CHOICES )[getRandomInt( 0, Object.values( CHOICES ).length  - 1 )];
 const isHumanWinner = ( humanChoice: CHOICES, computerChoice: CHOICES ) => winnerRules[humanChoice] === computerChoice;
 
-const RockPaperScissors = (): ReactElement => {
+const RockPaperScissorsApp = (): ReactElement => {
     const [ computerChoice, setComputerChoice ] = useState<CHOICES | null>();
     const [ humanChoice, setHumanChoice ] = useState<CHOICES | null>();
     const [ humanScore, setHumanScore ] = useState<number>( 0 );
@@ -139,4 +139,4 @@ const RockPaperScissors = (): ReactElement => {
     );
 };
 
-export default RockPaperScissors;
+export default RockPaperScissorsApp;
