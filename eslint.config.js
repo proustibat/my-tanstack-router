@@ -34,7 +34,8 @@ export default tseslint.config(
         'brace-style': [ 'error', 'stroustrup', { allowSingleLine: true } ],
         'no-trailing-spaces': [ 'error', { skipBlankLines: true } ],
         'no-new': [ 'off' ],
-        'computed-property-spacing': [ 'error', 'never' ]
+        'computed-property-spacing': [ 'error', 'never' ],
+        'no-unused-expressions': { "allowShortCircuit": true, "allowTernary": true }
     },
   },
 )

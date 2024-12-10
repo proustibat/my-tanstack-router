@@ -1,6 +1,7 @@
 import { ReactElement } from "react";
-import styles from "../styles/header.module.css";
 import { Link } from "@tanstack/react-router";
+
+import styles from "./header.module.css";
 
 const Header = (): ReactElement => {
     return (

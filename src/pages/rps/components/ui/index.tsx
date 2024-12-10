@@ -1,8 +1,9 @@
 import {  ReactElement } from "react";
-import { CHOICES } from "../../types/rps-types.ts";
+import { CHOICES } from "../../rps-types.ts";
 import classnames from "classnames";
 import { base64Icons } from "../../utils.ts";
-import styles from "../../styles/ui.module.css";
+
+import styles from "./ui.module.css";
 
 interface UIProps {
     onPlay: ( choice: CHOICES ) => void;
@@ -16,7 +17,7 @@ interface UIProps {
 const UI = ( { onPlay, onReset, onDeleteBestScore, round, bestScore, disable = false }: UIProps ): ReactElement => {
     const handlePlay = ( choice: CHOICES ) => () => onPlay( choice );
     return (
-        <section className={styles.container}>
+        <section className={styles.ui}>
             <section className={styles.choices}>
                 <button
                     className={styles.choiceBtn}

@@ -1,5 +1,6 @@
 import classnames from "classnames";
-import styles from "../../styles/round.module.css";
+
+import styles from "./round.module.css";
 
 interface RoundProps {
     count: number

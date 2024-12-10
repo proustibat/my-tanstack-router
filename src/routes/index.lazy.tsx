@@ -1,5 +1,4 @@
 import { createLazyFileRoute } from '@tanstack/react-router';
-import styles from "../styles/index.module.css";
 
 export const Route = createLazyFileRoute( '/' )( {
     component: Index,
@@ -7,7 +6,7 @@ export const Route = createLazyFileRoute( '/' )( {
 
 function Index() {
     return (
-        <main className={styles.main}>
+        <main>
             <h1>Hello world!</h1>
         </main>
     );

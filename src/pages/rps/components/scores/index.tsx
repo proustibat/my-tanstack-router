@@ -1,6 +1,7 @@
 import { ReactElement } from "react";
-import styles from "../../styles/scores.module.css";
 import classnames from "classnames";
+
+import styles from "./scores.module.css";
 
 interface ScoresProps {
    humanScore: number;
@@ -11,7 +12,7 @@ interface ScoresProps {
 
 const Scores = ( { humanScore, computerScore, bestScore, round }: ScoresProps ): ReactElement => {
     return (
-        <section className={styles.container} >
+        <section className={styles.scores} >
             <p className={classnames(
                 styles.currentScores,
                 { "visible": round > 0 },

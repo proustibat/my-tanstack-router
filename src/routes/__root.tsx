@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
 import { createRootRoute, Outlet } from '@tanstack/react-router';
-import Header from "../components/header.tsx";
+import Header from "../common/components/header";
 
 const TanStackRouterDevtools =
     process.env.NODE_ENV === 'production'

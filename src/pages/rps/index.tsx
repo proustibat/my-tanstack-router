@@ -1,13 +1,13 @@
 import { ReactElement, useEffect, useRef, useState } from "react";
 import classnames from 'classnames';
-import Round from "./round.tsx";
-import Results, { ResultsRef } from "./results.tsx";
-import Scores from "./scores.tsx";
-import Ui from "./ui.tsx";
-import { CHOICES, RESULTS_MESSAGES } from "../../types/rps-types.ts";
-import { getRandomInt, winnerRules } from "../../utils.ts";
+import Round from "./components/round";
+import Results, { ResultsRef } from "./components/results";
+import Scores from "./components/scores";
+import Ui from "./components/ui";
+import { CHOICES, RESULTS_MESSAGES } from "./rps-types.ts";
+import { getRandomInt, winnerRules } from "./utils.ts";
 
-import styles from "../../styles/rps.module.css";
+import styles from "./rps.module.css";
 
 const bestScoreKey = "best-score";
 
@@ -32,8 +32,6 @@ const RockPaperScissors = (): ReactElement => {
         setBestScore( storage ? parseInt( storage , 10 ) : 0 );
     }, [] );
 
-
-
     const updateResultMessage = ( isTie: boolean, isHumanCurrentlyWinning: boolean ) => {
         if ( isTie ) {
             setCurrentResultMessage( RESULTS_MESSAGES.TIE );
@@ -47,8 +45,6 @@ const RockPaperScissors = (): ReactElement => {
             }
         }
     };
-
-
 
     const incrementHumanScore = () => {
         const newHumanScore = humanScore + 1;
@@ -85,7 +81,6 @@ const RockPaperScissors = (): ReactElement => {
         // update & display result: message and played choices
         updateResultMessage( isTie, isHumanCurrentlyWinning );
         await resultsRef.current?.show();
-
 
         // update & show scores
         if( !isTie ) {
