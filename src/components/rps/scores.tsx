@@ -20,7 +20,7 @@ const Scores = ( { humanScore, computerScore, bestScore, round }: ScoresProps ):
                 <span>Human: {humanScore}</span>{` | `}
                 <span>Computer: {computerScore}</span>
             </p>
-            <p>Your best score: {bestScore}</p>
+            <p>Your best score: <span>{bestScore}</span></p>
         </section>
     );
 };

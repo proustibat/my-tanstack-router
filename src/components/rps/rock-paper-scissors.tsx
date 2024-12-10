@@ -14,7 +14,7 @@ const bestScoreKey = "best-score";
 const getComputerChoice = (): CHOICES => Object.values( CHOICES )[getRandomInt( 0, Object.values( CHOICES ).length  - 1 )];
 const isHumanWinner = ( humanChoice: CHOICES, computerChoice: CHOICES ) => winnerRules[humanChoice] === computerChoice;
 
-const RockPaperScissors = ( ): ReactElement => {
+const RockPaperScissors = (): ReactElement => {
     const [ computerChoice, setComputerChoice ] = useState<CHOICES | null>();
     const [ humanChoice, setHumanChoice ] = useState<CHOICES | null>();
     const [ humanScore, setHumanScore ] = useState<number>( 0 );
@@ -22,6 +22,7 @@ const RockPaperScissors = ( ): ReactElement => {
     const [ bestScore, setBestScore ] = useState<number>( 0 );
     const [ currentResultMessage, setCurrentResultMessage ] = useState<RESULTS_MESSAGES>( RESULTS_MESSAGES.READY );
     const [ currentRound, setCurrentRound ] = useState<number>( 0 );
+    const [ disableUi, setDisableUi ] = useState( false );
 
     const resultsRef = useRef<ResultsRef>( null );
 
@@ -31,40 +32,73 @@ const RockPaperScissors = ( ): ReactElement => {
         setBestScore( storage ? parseInt( storage , 10 ) : 0 );
     }, [] );
 
-    const handlePlay = ( humanChoice: CHOICES ) => {
-        const computerChoice: CHOICES = getComputerChoice();
 
-        setHumanChoice( humanChoice );
-        setComputerChoice( computerChoice );
-        setCurrentRound( round => round + 1 );
-        let newHumanScore: number;
 
-        if ( humanChoice === computerChoice ) {
+    const updateResultMessage = ( isTie: boolean, isHumanCurrentlyWinning: boolean ) => {
+        if ( isTie ) {
             setCurrentResultMessage( RESULTS_MESSAGES.TIE );
         }
         else {
-            const isHumanCurrentlyWinning: boolean = isHumanWinner( humanChoice, computerChoice );
             if ( isHumanCurrentlyWinning ) {
-                newHumanScore = humanScore +1;
-                setHumanScore( newHumanScore );
                 setCurrentResultMessage( RESULTS_MESSAGES.WIN );
-
-                // best score
-                const storage = localStorage.getItem( bestScoreKey );
-                const previousBestScore = storage ? parseInt( storage , 10 ) : 0;
-                if( newHumanScore > previousBestScore ) {
-                    setBestScore( newHumanScore );
-                    localStorage.setItem( bestScoreKey, newHumanScore.toString() );
-                    // @todo animate best core ui
-                }
             }
             else {
-                setComputerScore( score => score + 1 );
                 setCurrentResultMessage( RESULTS_MESSAGES.LOSE );
             }
         }
+    };
 
-        resultsRef.current?.animate();
+
+
+    const incrementHumanScore = () => {
+        const newHumanScore = humanScore + 1;
+        setHumanScore( newHumanScore );
+
+        // best score
+        const storage = localStorage.getItem( bestScoreKey );
+        const previousBestScore = storage ? parseInt( storage , 10 ) : 0;
+        if( newHumanScore > previousBestScore ) {
+            setBestScore( newHumanScore );
+            localStorage.setItem( bestScoreKey, newHumanScore.toString() );
+        }
+    };
+
+    const handlePlay = async ( humanChoice: CHOICES ) => {
+        // disable iu to prevent playing too quickly without animations being ended
+        setDisableUi( true );
+
+        // hide results: message and previous played choices
+        await resultsRef.current?.hide();
+
+        // init choices
+        const computerChoice: CHOICES = getComputerChoice();
+        setHumanChoice( humanChoice );
+        setComputerChoice( computerChoice );
+
+        // current round played
+        setCurrentRound( round => round + 1 );
+
+        // check result
+        const isTie = humanChoice === computerChoice;
+        const isHumanCurrentlyWinning: boolean = isHumanWinner( humanChoice, computerChoice );
+
+        // update & display result: message and played choices
+        updateResultMessage( isTie, isHumanCurrentlyWinning );
+        await resultsRef.current?.show();
+
+
+        // update & show scores
+        if( !isTie ) {
+            if ( isHumanCurrentlyWinning ) {
+                incrementHumanScore();
+            }
+            else {
+                setComputerScore( score => score + 1 );
+            }
+        }
+
+        // enable ui to play again
+        setDisableUi( false );
     };
 
     const handleReset=() => {
@@ -104,6 +138,7 @@ const RockPaperScissors = ( ): ReactElement => {
                 onDeleteBestScore={handleDeleteBestScore}
                 round={currentRound}
                 bestScore={bestScore}
+                disable={disableUi}
             />
         </main>
     );
