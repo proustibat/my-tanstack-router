@@ -1,21 +1,24 @@
 import { ReactElement } from "react";
-import { Link } from "@tanstack/react-router";
+import {Link, LinkProps} from "@tanstack/react-router";
 
-import styles from "./header.module.css";
+import {StyledNav} from "./header.style.tsx";
+
+
+const links: LinkProps[] = [
+    {to: "/", children: "Home" },
+    {to: "/rps", children: "Rock Paper Scissors" },
+    {to: "/about", children: "About" },
+];
 
 const Header = (): ReactElement => {
     return (
-        <nav className={styles.header}>
-            <Link to="/" className="[&.active]:font-bold">
-                Home
-            </Link>
-            <Link to="/rps" className="[&.active]:font-bold">
-                RPS
-            </Link>
-            <Link to="/about" className="[&.active]:font-bold">
-                About
-            </Link>
-        </nav>
+        <StyledNav>
+            {
+                links.map(linkOptionsProps => {
+                    return <Link activeProps={{ className: "active"}} {...linkOptionsProps} />
+                })
+            }
+        </StyledNav>
     );
 };
 
