@@ -2,7 +2,9 @@
 
 exports[`TodoApp > renders the init tasks 1`] = `
 <div>
-  <div>
+  <div
+    class="_industrial_f59f8a"
+  >
     <h1
       class="_title_a1a131"
     >
@@ -129,8 +131,14 @@ exports[`TodoApp > renders the init tasks 1`] = `
       </section>
     </main>
     <footer>
+      <label
+        for="fontSwitcher"
+      >
+        Change font
+      </label>
       <div
         class="css-b62m3t-container"
+        id="fontSwitcher"
       >
         <span
           class="css-1f43avz-a11yText-A11yText"
@@ -202,6 +210,11 @@ exports[`TodoApp > renders the init tasks 1`] = `
             </div>
           </div>
         </div>
+        <input
+          name="fontSwitcher"
+          type="hidden"
+          value="industrial"
+        />
       </div>
     </footer>
   </div>
