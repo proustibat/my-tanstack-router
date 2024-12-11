@@ -1,0 +1,131 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`TodoApp > renders the init tasks 1`] = `
+<div>
+  <h1
+    class="_title_a1a131"
+  >
+    TODO
+  </h1>
+  <main
+    class="_main_a1a131"
+  >
+    <section>
+      <h3>
+        App with class components
+      </h3>
+      bound HTMLFormElement {
+        "0": <input
+          name="task-entry"
+          type="text"
+          value=""
+        />,
+        "1": <button
+          disabled=""
+          type="submit"
+        >
+          Submit
+        </button>,
+      }
+      <h4>
+        All the tasks!
+        <span>
+           (
+          2
+          ) 
+        </span>
+      </h4>
+      <ul>
+        <li>
+          <span>
+            Youpi
+          </span>
+          <button
+            type="button"
+          >
+            Edit
+          </button>
+          <button
+            type="button"
+          >
+            delete
+          </button>
+        </li>
+        <li>
+          <span>
+            Yep
+          </span>
+          <button
+            type="button"
+          >
+            Edit
+          </button>
+          <button
+            type="button"
+          >
+            delete
+          </button>
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h3>
+        App with functional components
+      </h3>
+      bound HTMLFormElement {
+        "0": <input
+          name="task-entry"
+          type="text"
+          value=""
+        />,
+        "1": <button
+          disabled=""
+          type="submit"
+        >
+          Submit
+        </button>,
+      }
+      <h4>
+        All the tasks!
+        <span>
+           (
+          2
+          ) 
+        </span>
+      </h4>
+      <ul>
+        <li>
+          <span>
+            Just some demo tasks
+          </span>
+          <button
+            type="button"
+          >
+            Edit
+          </button>
+          <button
+            type="button"
+          >
+            delete
+          </button>
+        </li>
+        <li>
+          <span>
+            As an example
+          </span>
+          <button
+            type="button"
+          >
+            Edit
+          </button>
+          <button
+            type="button"
+          >
+            delete
+          </button>
+        </li>
+      </ul>
+    </section>
+  </main>
+</div>
+`;
