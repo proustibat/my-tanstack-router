@@ -2,7 +2,6 @@ import { ReactElement } from "react";
 import {Link, LinkProps} from "@tanstack/react-router";
 
 import {StyledNav} from "./header.style.tsx";
-import fonts from "../../modern-fonts.module.css";
 
 
 const links: LinkProps[] = [
@@ -14,7 +13,7 @@ const links: LinkProps[] = [
 
 const Header = (): ReactElement => {
     return (
-        <StyledNav className={fonts.industrial}>
+        <StyledNav>
             {
                 links.map(linkOptionsProps => {
                     return <Link key={linkOptionsProps.to} activeProps={{ className: "active"}} {...linkOptionsProps} />

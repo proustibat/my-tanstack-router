@@ -1,6 +1,8 @@
-import React, { Suspense } from "react";
+import React, {Suspense, useState} from "react";
 import { createRootRoute, Outlet } from '@tanstack/react-router';
 import Header from "../common/components/header";
+import FontSwitcher, {options, type Value} from "../common/components/font-switcher";
+import fonts from "../common/modern-fonts.module.css";
 
 const TanStackRouterDevtools =
     process.env.NODE_ENV === 'production'
@@ -15,11 +17,20 @@ const TanStackRouterDevtools =
         );
 
 export const Route = createRootRoute( {
-    component: () => (
-        <Suspense>
-            <Header />
-            <Outlet />
-            <TanStackRouterDevtools initialIsOpen={false} />
-        </Suspense>
-    ),
+    component: () => {
+        const [font, setFont] = useState<Value>(options[9].value);
+        const onFontSelected = (value: Value) => {
+            setFont(value)
+        }
+        return (
+            <Suspense>
+                <div {...(font && {className: fonts[font]})} >
+                    <Header />
+                    <FontSwitcher onFontSelected={onFontSelected} defaultFont={options[9].value} />
+                    <Outlet/>
+                </div>
+                <TanStackRouterDevtools initialIsOpen={false}/>
+            </Suspense>
+            )
+    },
 } );
