@@ -8,6 +8,7 @@ import { CHOICES, RESULTS_MESSAGES } from "./rps-types.ts";
 import { getRandomInt, winnerRules } from "./utils.ts";
 
 import styles from "./rps.module.css";
+import fonts from "../../common/modern-fonts.module.css";
 
 const bestScoreKey = "best-score";
 
@@ -113,7 +114,7 @@ const RockPaperScissorsApp = (): ReactElement => {
     };
 
     return (
-        <main className={classnames( styles.systemUi, styles.main )}>
+        <main className={classnames( fonts.systemUi, styles.main )}>
             <Round count={currentRound} />
             <Results
                 ref={resultsRef}
