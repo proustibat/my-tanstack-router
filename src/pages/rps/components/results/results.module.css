@@ -1,11 +1,11 @@
 .results {
-    padding: 1rem;
+    padding: 0 1rem 1rem 1rem;
     text-align: center;
 }
 
 .resultsTitle {
     padding: 0;
-    margin: 2rem 0;
+    margin: 1.5rem 0;
 }
 
 .resultsChoices {

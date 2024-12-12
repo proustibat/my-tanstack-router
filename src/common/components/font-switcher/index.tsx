@@ -1,6 +1,7 @@
 import {ReactElement} from "react";
 import Select from 'react-select';
 import fonts from "../../modern-fonts.module.css";
+import styles from "./font-switcher.module.css";
 
 interface Option  {
     value: string;
@@ -41,8 +42,8 @@ const FontSwitcher = ({ onFontSelected, defaultFont = options[9].value }: FontSw
         option && onFontSelected(option.value);
     }
     return (
-        <>
-            <label htmlFor="fontSwitcher">Change font</label>
+        <div className={styles.container}>
+            <label className={styles.label} htmlFor="fontSwitcher">Change font</label>
             <Select
                 classNames={{
                     option: ({data: {value}}) => fonts[value],
@@ -54,7 +55,7 @@ const FontSwitcher = ({ onFontSelected, defaultFont = options[9].value }: FontSw
                 onChange={handleChange}
                 defaultValue={getDefaultOption()}
             />
-        </>
+        </div>
     );
 };
 
