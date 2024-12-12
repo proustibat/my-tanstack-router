@@ -16,12 +16,19 @@ import { Route as rootRoute } from './routes/__root'
 
 // Create Virtual Routes
 
+const UniverseLazyImport = createFileRoute('/universe')()
 const TodoLazyImport = createFileRoute('/todo')()
 const RpsLazyImport = createFileRoute('/rps')()
 const AboutLazyImport = createFileRoute('/about')()
 const IndexLazyImport = createFileRoute('/')()
 
 // Create/Update Routes
+
+const UniverseLazyRoute = UniverseLazyImport.update({
+  id: '/universe',
+  path: '/universe',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/universe.lazy').then((d) => d.Route))
 
 const TodoLazyRoute = TodoLazyImport.update({
   id: '/todo',
@@ -79,6 +86,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TodoLazyImport
       parentRoute: typeof rootRoute
     }
+    '/universe': {
+      id: '/universe'
+      path: '/universe'
+      fullPath: '/universe'
+      preLoaderRoute: typeof UniverseLazyImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -89,6 +103,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutLazyRoute
   '/rps': typeof RpsLazyRoute
   '/todo': typeof TodoLazyRoute
+  '/universe': typeof UniverseLazyRoute
 }
 
 export interface FileRoutesByTo {
@@ -96,6 +111,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutLazyRoute
   '/rps': typeof RpsLazyRoute
   '/todo': typeof TodoLazyRoute
+  '/universe': typeof UniverseLazyRoute
 }
 
 export interface FileRoutesById {
@@ -104,14 +120,15 @@ export interface FileRoutesById {
   '/about': typeof AboutLazyRoute
   '/rps': typeof RpsLazyRoute
   '/todo': typeof TodoLazyRoute
+  '/universe': typeof UniverseLazyRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/rps' | '/todo'
+  fullPaths: '/' | '/about' | '/rps' | '/todo' | '/universe'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/rps' | '/todo'
-  id: '__root__' | '/' | '/about' | '/rps' | '/todo'
+  to: '/' | '/about' | '/rps' | '/todo' | '/universe'
+  id: '__root__' | '/' | '/about' | '/rps' | '/todo' | '/universe'
   fileRoutesById: FileRoutesById
 }
 
@@ -120,6 +137,7 @@ export interface RootRouteChildren {
   AboutLazyRoute: typeof AboutLazyRoute
   RpsLazyRoute: typeof RpsLazyRoute
   TodoLazyRoute: typeof TodoLazyRoute
+  UniverseLazyRoute: typeof UniverseLazyRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
@@ -127,6 +145,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutLazyRoute: AboutLazyRoute,
   RpsLazyRoute: RpsLazyRoute,
   TodoLazyRoute: TodoLazyRoute,
+  UniverseLazyRoute: UniverseLazyRoute,
 }
 
 export const routeTree = rootRoute
@@ -142,7 +161,8 @@ export const routeTree = rootRoute
         "/",
         "/about",
         "/rps",
-        "/todo"
+        "/todo",
+        "/universe"
       ]
     },
     "/": {
@@ -156,6 +176,9 @@ export const routeTree = rootRoute
     },
     "/todo": {
       "filePath": "todo.lazy.tsx"
+    },
+    "/universe": {
+      "filePath": "universe.lazy.tsx"
     }
   }
 }

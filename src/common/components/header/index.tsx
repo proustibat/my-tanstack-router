@@ -9,6 +9,7 @@ const links: LinkProps[] = [
     {to: "/todo", children: "Todo" },
     {to: "/rps", children: "Rock Paper Scissors" },
     {to: "/about", children: "About" },
+    {to: "/universe", children: "Universe" },
 ];
 
 const Header = (): ReactElement => {

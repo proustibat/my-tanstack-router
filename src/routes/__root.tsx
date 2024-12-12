@@ -46,7 +46,7 @@ const AppRoot = () => {
         <Suspense>
             <div {...(font && {className: fonts[font]})} >
                 <Header/>
-                <button style={{display: "block", margin: "auto"}} data-js="modal" onClick={toggleModal} className="button">Change font</button>
+                <button style={{display: "block", margin: "0 auto 1rem auto"}} data-js="modal" onClick={toggleModal} className="button">Change font</button>
                 <Outlet/>
                 {showModal && (
                     <Modal>
