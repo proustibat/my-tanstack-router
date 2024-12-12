@@ -8,7 +8,6 @@ const links: LinkProps[] = [
     {to: "/", children: "Home" },
     {to: "/todo", children: "Todo" },
     {to: "/rps", children: "Rock Paper Scissors" },
-    {to: "/about", children: "About" },
     {to: "/universe", children: "Universe" },
 ];
 

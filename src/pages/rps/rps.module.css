@@ -1,21 +1,3 @@
-@media only screen and (orientation: landscape) {
-    html {
-        background: black;
-    }
-    body {
-        display: none;
-    }
-}
-
-@media (hover: hover) and (pointer: fine) {
-    html {
-        background: none;
-    }
-    body {
-        display: block;
-    }
-}
-
 .main {
     padding-bottom: 2em;
 }
