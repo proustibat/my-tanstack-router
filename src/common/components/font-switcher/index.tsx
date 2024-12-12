@@ -1,45 +1,17 @@
-import {ReactElement} from "react";
+import {ReactElement, useContext} from "react";
 import Select from 'react-select';
 import fonts from "../../modern-fonts.module.css";
 import styles from "./font-switcher.module.css";
+import {type FontOption, fontOptions, FontContext} from "../../../contexts/FontContext.tsx";
 
-interface Option  {
-    value: string;
-    label: string;
-}
-
-export const options: Option[] = [
-    { value: 'systemUi', label: 'System UI' },
-    { value: 'transitional', label: 'Transitional' },
-    { value: 'oldStyle', label: 'Old Style' },
-    { value: 'humanist', label: 'Humanist' },
-    { value: 'geometricHumanist', label: 'GeometricHumanist' },
-    { value: 'classicalHumanist', label: 'ClassicalHumanist' },
-    { value: 'neoGrotesque', label: 'Neo Grotesque' },
-    { value: 'monospaceSlabSerif', label: 'Monospace Slab Serif' },
-    { value: 'monospaceCode', label: 'Monospace Code' },
-    { value: 'industrial', label: 'Industrial' },
-    { value: 'roundedSans', label: 'Rounded Sans' },
-    { value: 'slabSerif', label: 'Slab Serif' },
-    { value: 'antique', label: 'Antique' },
-    { value: 'didone', label: 'Didone' },
-    { value: 'handwritten', label: 'Handwritten' }
-];
-
-const availableValuesMap = [...options.map(option => option.value)] as const;
-export type Value = typeof availableValuesMap[number];
-
-interface FontSwitcherProps {
-   onFontSelected: (value: Value) => void;
-   defaultFont?: Value
-}
-
-const FontSwitcher = ({ onFontSelected, defaultFont = options[9].value }: FontSwitcherProps): ReactElement => {
+const FontSwitcher = (): ReactElement => {
+    const {font, setFont} = useContext(FontContext);
     const getDefaultOption = () => {
-        return options.find(option => option.value === defaultFont);
+        return fontOptions.find(option => option.value === font);
     }
-    const handleChange = (option: Option | null) => {
-        option && onFontSelected(option.value);
+
+    const handleChange = (option: FontOption | null) => {
+        option && setFont && setFont(option.value);
     }
     return (
         <div className={styles.container}>
@@ -51,7 +23,7 @@ const FontSwitcher = ({ onFontSelected, defaultFont = options[9].value }: FontSw
                 name="fontSwitcher"
                 id="fontSwitcher"
                 placeholder="Change font"
-                options={options}
+                options={fontOptions}
                 onChange={handleChange}
                 defaultValue={getDefaultOption()}
             />

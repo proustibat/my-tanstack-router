@@ -26,7 +26,6 @@ const RockPaperScissorsApp = (): ReactElement => {
     const resultsRef = useRef<ResultsRef>( null );
 
     useEffect( () => {
-        console.log( "USE EFFECT" );
         const storage = localStorage.getItem( bestScoreKey );
         setBestScore( storage ? parseInt( storage , 10 ) : 0 );
     }, [] );
