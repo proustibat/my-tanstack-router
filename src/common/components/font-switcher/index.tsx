@@ -17,15 +17,15 @@ const FontSwitcher = (): ReactElement => {
         <div className={styles.container}>
             <label className={styles.label} htmlFor="fontSwitcher">Change font</label>
             <Select
-                classNames={{
-                    option: ({data: {value}}) => fonts[value],
-                }}
+                classNames={{ option: ({data: {value}}) => fonts[value] }}
                 name="fontSwitcher"
                 id="fontSwitcher"
                 placeholder="Change font"
                 options={fontOptions}
                 onChange={handleChange}
                 defaultValue={getDefaultOption()}
+                menuPortalTarget={document.body}
+                menuShouldScrollIntoView={false}
             />
         </div>
     );
