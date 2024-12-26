@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const StyledNav = styled.nav`
     display: flex;
+    flex-wrap: wrap;
     gap: 1rem;
     padding: 1rem;
     margin: 0 0 1rem 0;

@@ -39,7 +39,7 @@ interface IFontContext {
     font: FontValue;
     setFont?: Dispatch<SetStateAction<FontValue>>;
 }
-export const FontContext = createContext<IFontContext>({font: fontOptions[9].value});
+export const FontContext = createContext<IFontContext>({font: fontOptions[14].value});
 export const FontProvider = ({children}: PropsWithChildren) => {
     const {font: defaultFont} = useContext(FontContext);
     const [font, setFont] = useState<FontValue>(defaultFont);
