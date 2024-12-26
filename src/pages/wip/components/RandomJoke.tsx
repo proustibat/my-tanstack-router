@@ -33,7 +33,7 @@ const RandomJoke = () => {
                 padding: "1rem",
                 boxShadow: "0 4px 11px 0 rgb(37 44 97 / 15%), 0 1px 3px 0 rgb(93 100 148 / 20%)"
             }}>
-                {joke ? joke : "Get a random joke from https://icanhazdadjoke.com"}
+                {joke ?? "Get a random joke from https://icanhazdadjoke.com"}
             </p>
 
             <button
@@ -42,7 +42,7 @@ const RandomJoke = () => {
                 disabled={loading}
                 onClick={handleClick}
             >
-                {loading ? "loading..." : "Tell me a joke"}
+                {loading ? "loading..." : "TELL ME A JOKE"}
             </button>
         </section>
     );

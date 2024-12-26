@@ -93,14 +93,13 @@ const SpeechRecognition = () => {
         recognition.lang = newLang;
     }
     return (
-        <section>
+        <section style={{ padding: "1rem" }}>
             <h1>Speech Recognition</h1>
             <div>
                 <button type="button" disabled={startDisabled} onClick={startRecognition}>start</button>
                 <button type="button" disabled={stopDisabled} onClick={stopRecognition}>stop</button>
             </div>
-            <button onClick={switchLang} type="button">Switch
-                to {currentLanguageRecognition === "fr-FR" ? "English" : "French"}]
+            <button onClick={switchLang} type="button">Switch to {currentLanguageRecognition === "fr-FR" ? "English" : "French"}
             </button>
             <div>
                 {transcripts.map((t, index) => <p key={t + index}>{t}</p>)}
