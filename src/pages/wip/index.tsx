@@ -1,6 +1,7 @@
 import {ReactElement} from "react";
 import SpeechRecognition from "./components/SpeechRecognition.tsx";
 import TextToSpeech from "./components/TextToSpeech.tsx";
+import RandomJoke from "./components/RandomJoke.tsx";
 
 const Wip = (): ReactElement => {
 
@@ -9,6 +10,7 @@ const Wip = (): ReactElement => {
         <main>
             <SpeechRecognition />
             <TextToSpeech />
+            <RandomJoke />
         </main>
     );
 };
