@@ -4,7 +4,8 @@ import {
     createContext,
     PropsWithChildren,
     useState,
-    useMemo, useContext
+    useMemo,
+    useContext
 } from 'react';
 
 export interface FontOption {
